@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    {# <h1>Article index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Image</th>
+                <th>CreatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.content }}</td>
+                <td>{{ article.image }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_article_show', {'id': article.id}) }}" class="btn btn-primary">show</a>
+                    <a href="{{ path('app_article_edit', {'id': article.id}) }}" class="btn btn-primary" id="margin">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_article_new') }}" class="btn btn-primary">Create new</a> #}
+<div style="padding:25px">
+<section class="article">
+<a href="{{ path('app_article_new') }}" class="btn btn-primary" style="float:right"> Create new article</a>
+{% for article in articles %}
+<article>
+
+    <h2>{{article.title}}</h2>
+        <div class="metadata">Written on {{article.createdAt | date('d/m/Y')}} à {{article.createdAt | date('H:i')}} in the political category </div>
+
+        <img  src="{{article.image}}" alt="Card image cap" >
+        
+        <p>{{article.content}}</p>
+        <a href="{{ path('app_article_show', {'id': article.id}) }}" class="btn btn-primary"> Read More</a>
+        <a href="{{ path('app_article_edit', {'id': article.id}) }}" class="btn btn-primary" >edit</a>
+</article>
+{% endfor %}
+
+</div>
+<div class="center">
+    <ul class="pagination" >
+    {% for item in 1..((total/limit) | round(0,'ceil'))%}
+        <li>
+            <a href="?page={{item}}" >{{item}}</a>
+        </li>
+           
+    {% endfor %}
+    </ul>
+    </div>
+{% endblock %}

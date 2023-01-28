@@ -1,0 +1,31 @@
+body {
+    background: #F5F7FA;
+    font-family: 'Open Sans', sans-serif;
+}
+table.table {
+    border-collapse: separate;
+    border-spacing: 50px 0;
+    table-layout: initial;
+    width:100%;       
+  }
+  
+#margin{
+    margin-top: 10px;
+}
+
+.pagination a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #1e2d4d;
+    color: white;
+    margin-left: 10px;
+}
+
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
