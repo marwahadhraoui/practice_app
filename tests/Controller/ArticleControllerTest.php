@@ -8,19 +8,19 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ArticleControllerTest extends WebTestCase
 {
-    // public function testindex(): void
-    // {
+    public function testindex(): void
+    {
 
-    //     $client = static::createClient();
-    //     $crawler = $client->request('GET', '/article/');
-    //     $this->assertResponseIsSuccessful();
-
-    // }
+        $client = static::createClient();
+        $crawler = $client->request('GET', 'https://127.0.0.1:8000/article/');
+        $this->assertResponseIsSuccessful();
+        $this->assertSelectorTextContains('h2', 'Test Title Article');
+    }
 
     public function testNew()
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/article/new');
+        $crawler = $client->request('GET', 'https://127.0.0.1:8000/article/new');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Create new Article');
         //récuperer le formulaire 
@@ -31,7 +31,8 @@ class ArticleControllerTest extends WebTestCase
         $form["article[image]"] = "image.png";
         // soumettre le formulaire
         $client->submit($form);
-        // $this->assertTrue($client->getResponse()->isRedirect('https://127.0.0.1:8000/article/'));
-
+        //la redirection
+        $crawler = $client->request('GET', 'https://127.0.0.1:8000/article/');
+        $this->assertResponseIsSuccessful();
     }
 }
