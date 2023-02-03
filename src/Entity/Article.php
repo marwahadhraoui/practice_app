@@ -22,7 +22,6 @@ class Article
         match: false,
         message: 'Title cannot contain a number',
     )]
-
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -40,6 +39,13 @@ class Article
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId($id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getTitle(): ?string

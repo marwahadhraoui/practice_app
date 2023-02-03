@@ -1,0 +1,3 @@
+Title: test for amqp
+Content: test
+Image: test
