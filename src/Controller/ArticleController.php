@@ -16,8 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
     {
     #[Route('/', name: 'app_article_index', methods: ['GET'])]
+    
     public function index(ArticleService $articleService, ArticleRepository $articleRepository, Request $request): Response
         {
+           
+            
         $paginator = $articleService->Paginate($request, $articleRepository);
 
         return $this->render('article/index.html.twig', [
@@ -55,6 +58,7 @@ class ArticleController extends AbstractController
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
     public function show(Article $article): Response
         {
+            
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);
@@ -83,7 +87,6 @@ class ArticleController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->request->get('_token'))) {
             $articleService->deleteArticle($article, true, $articleRepository);
             }
-
         return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
         }
     }
